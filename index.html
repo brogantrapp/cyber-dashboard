@@ -10,7 +10,6 @@
 
 <link rel="stylesheet" href="style.css">
 
-<!-- MapLibre -->
 <link href="https://unpkg.com/maplibre-gl@4.7.1/dist/maplibre-gl.css" rel="stylesheet">
 
 </head>
@@ -25,9 +24,13 @@
 
     <img id="idleGif" src="assets/idle.gif">
 
-    <h2 id="startText">
-        PRESS SPACE TO START
-    </h2>
+    <div id="startOverlay">
+
+        <h2>
+            PRESS SPACE TO START
+        </h2>
+
+    </div>
 
 </div>
 
@@ -35,7 +38,7 @@
 
 
 
-<!-- APPLICATION -->
+<!-- APP -->
 
 <div id="app">
 
@@ -77,7 +80,9 @@
 
 
 <div id="status">
+
 ● ONLINE
+
 </div>
 
 
@@ -90,7 +95,7 @@
 <section id="workspace">
 
 
-<div class="panel map">
+<div class="panel mapPanel">
 
 
 <h3>MAP</h3>
@@ -101,8 +106,7 @@
 
 <div id="coordinates">
 
-LAT: --
-<br>
+LAT: --<br>
 LON: --
 
 </div>
@@ -130,6 +134,7 @@ SELECT A TOOL
 </div>
 
 
+
 </section>
 
 
@@ -149,6 +154,7 @@ SYSTEM READY
 
 
 </div>
+
 
 
 
