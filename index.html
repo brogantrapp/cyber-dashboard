@@ -2,41 +2,31 @@
 <html lang="en">
 
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-    <title>Cyber Dashboard</title>
+<title>Cyber Dashboard</title>
 
-    <link rel="stylesheet" href="style.css">
+<link rel="stylesheet" href="style.css">
+
 </head>
 
 
 <body>
 
 
-<!-- STARTUP SCREEN -->
+<!-- STARTUP -->
 
 <div id="startup">
 
-    <div class="glitch-text">
-        SIGNAL FOUND
-    </div>
+
+    <img id="startupGif" src="assets/startup.gif">
 
 
-    <div class="boot-text">
-
-        <p>> CONNECTING TO NODE...</p>
-        <p>> VERIFYING SYSTEM...</p>
-        <p>> LOADING MODULES...</p>
-        <p>> ACCESS GRANTED</p>
-
-    </div>
+    <img id="idleGif" src="assets/idle.gif">
 
 
-    <img src="assets/logo.svg" id="logo">
-
-
-    <h2>
+    <h2 id="startText">
         PRESS SPACE TO START
     </h2>
 
@@ -46,114 +36,117 @@
 
 
 
-<!-- MAIN APP -->
 
+<!-- APPLICATION -->
 
 <div id="app">
 
 
-    <aside id="sidebar">
+<aside id="sidebar">
 
 
-        <button id="menu">
-            ☰
-        </button>
-
-
-        <nav>
-
-            <button>Dashboard</button>
-            <button>Map</button>
-            <button>IP Lookup</button>
-            <button>Coordinates</button>
-            <button>DNS</button>
-            <button>WHOIS</button>
-            <button>Tools</button>
-            <button>Settings</button>
-
-        </nav>
-
-
-    </aside>
+<button id="menu">
+☰
+</button>
 
 
 
+<nav>
 
-    <main>
+<button>Dashboard</button>
+<button>Map</button>
+<button>IP Lookup</button>
+<button>Coordinates</button>
+<button>DNS</button>
+<button>WHOIS</button>
+<button>Tools</button>
+<button>Settings</button>
+
+</nav>
 
 
-        <header>
-
-            <input placeholder="Search...">
-
-
-            <div id="status">
-                ● ONLINE
-            </div>
-
-
-        </header>
+</aside>
 
 
 
 
 
-        <section id="workspace">
-
-
-            <div class="panel map">
-
-                <h3>MAP</h3>
-
-
-                <div class="placeholder">
-
-                    MAP MODULE OFFLINE
-
-                </div>
-
-
-            </div>
+<main>
 
 
 
+<header>
+
+<input placeholder="Search...">
 
 
-            <div class="panel tools">
+<div id="status">
+● ONLINE
+</div>
 
 
-                <h3>TOOLS</h3>
-
-
-                <div class="placeholder">
-
-                    SELECT A TOOL
-
-                </div>
-
-
-            </div>
-
-
-
-        </section>
+</header>
 
 
 
 
 
-        <footer>
-
-            SYSTEM READY
-
-        </footer>
+<section id="workspace">
 
 
+<div class="panel map">
 
-    </main>
+<h3>MAP</h3>
+
+
+<div class="placeholder">
+
+MAP MODULE OFFLINE
+
+</div>
 
 
 </div>
+
+
+
+
+
+<div class="panel tools">
+
+<h3>TOOLS</h3>
+
+
+<div class="placeholder">
+
+SELECT A TOOL
+
+</div>
+
+
+</div>
+
+
+</section>
+
+
+
+
+
+<footer>
+
+SYSTEM READY
+
+</footer>
+
+
+
+
+</main>
+
+
+</div>
+
 
 
 
