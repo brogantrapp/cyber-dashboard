@@ -102,6 +102,17 @@ map.on("style.load",()=>{
 
 });
 
+map.on("load",()=>{
+
+    map.easeTo({
+
+        pitch:30,
+
+        duration:1000
+
+    });
+
+});
 
 const coordinates=document.getElementById("coordinates");
 
