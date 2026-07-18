@@ -4,37 +4,85 @@ const app = document.getElementById("app");
 let started = false;
 
 
-// START WITH SPACE
 
-document.addEventListener("keydown", (event)=>{
+// BOOT TEXT ANIMATION
 
-    if(event.code === "Space" && !started){
+const bootLines = document.querySelectorAll(".boot-text p");
 
-        started = true;
 
-        startup.style.opacity = "0";
+bootLines.forEach((line,index)=>{
 
-        setTimeout(()=>{
 
-            startup.style.display="none";
+    line.style.opacity="0";
 
-            app.style.opacity="1";
 
-        },1000);
+    setTimeout(()=>{
 
-    }
+
+        line.style.opacity="1";
+
+
+    },700 * index);
+
 
 });
 
 
+
+
+
+
+// SPACE TO START
+
+
+document.addEventListener("keydown",(event)=>{
+
+
+    if(event.code==="Space" && !started){
+
+
+        started=true;
+
+
+        startup.style.opacity="0";
+
+
+
+        setTimeout(()=>{
+
+
+            startup.style.display="none";
+
+
+            app.style.opacity="1";
+
+
+        },1000);
+
+
+    }
+
+
+});
+
+
+
+
+
+
 // SIDEBAR
 
-const menu = document.getElementById("menu");
-const sidebar = document.getElementById("sidebar");
+
+const menu=document.getElementById("menu");
+
+const sidebar=document.getElementById("sidebar");
 
 
-menu.onclick = ()=>{
+
+menu.onclick=()=>{
+
 
     sidebar.classList.toggle("collapsed");
+
 
 };
