@@ -1,21 +1,348 @@
-/* MAP */
+* {
+
+box-sizing:border-box;
+
+}
 
 
-#map {
+body {
 
-width:100%;
+margin:0;
 
-height:90%;
+background:#050505;
 
-background:#000;
+color:#e6e6e6;
+
+font-family:"Courier New", monospace;
+
+overflow:hidden;
 
 }
 
 
 
-.map {
+
+/* STARTUP */
+
+
+#startup {
+
+position:fixed;
+
+inset:0;
+
+background:black;
+
+display:flex;
+
+justify-content:center;
+
+align-items:center;
+
+z-index:10;
+
+transition:opacity 1s;
+
+}
+
+
+
+#idleGif {
+
+position:absolute;
+
+inset:0;
+
+width:100%;
+
+height:100%;
+
+object-fit:cover;
+
+z-index:1;
+
+}
+
+
+
+#startOverlay {
+
+position:absolute;
+
+inset:0;
+
+display:flex;
+
+justify-content:center;
+
+align-items:flex-end;
+
+padding-bottom:80px;
+
+z-index:2;
+
+}
+
+
+
+#startOverlay h2 {
+
+color:white;
+
+font-size:22px;
+
+letter-spacing:5px;
+
+text-shadow:
+
+0 0 10px black,
+
+0 0 20px black;
+
+animation:blink 1.5s infinite;
+
+}
+
+
+
+@keyframes blink {
+
+50% {
+
+opacity:.3;
+
+}
+
+}
+
+
+
+
+
+
+
+/* APP */
+
+
+#app {
+
+height:100vh;
+
+display:flex;
+
+opacity:0;
+
+transition:opacity 1s;
+
+}
+
+
+
+#sidebar {
+
+width:230px;
+
+background:#080808;
+
+border-right:1px solid #222;
+
+transition:.4s;
+
+}
+
+
+
+#sidebar.collapsed {
+
+width:60px;
+
+}
+
+
+
+#menu {
+
+width:100%;
+
+height:50px;
+
+background:none;
+
+border:none;
+
+color:white;
+
+font-size:25px;
+
+cursor:pointer;
+
+}
+
+
+
+nav button {
+
+width:100%;
+
+padding:15px;
+
+background:none;
+
+border:none;
+
+color:#aaa;
+
+text-align:left;
+
+cursor:pointer;
+
+}
+
+
+
+nav button:hover {
+
+background:#111;
+
+color:#00ffff;
+
+}
+
+
+
+
+main {
+
+flex:1;
+
+display:flex;
+
+flex-direction:column;
+
+}
+
+
+
+
+header {
+
+height:55px;
+
+border-bottom:1px solid #222;
+
+display:flex;
+
+align-items:center;
+
+justify-content:space-between;
+
+padding:10px 20px;
+
+}
+
+
+
+header input {
+
+width:350px;
+
+background:#111;
+
+border:1px solid #333;
+
+color:white;
+
+padding:10px;
+
+}
+
+
+
+#status {
+
+color:#00ff88;
+
+}
+
+
+
+
+#workspace {
+
+flex:1;
+
+display:flex;
+
+gap:15px;
+
+padding:15px;
+
+}
+
+
+
+
+.panel {
+
+background:#090909;
+
+border:1px solid #222;
+
+padding:15px;
+
+}
+
+
+
+h3 {
+
+color:#00ffff;
+
+}
+
+
+
+.mapPanel {
+
+flex:2;
 
 position:relative;
+
+}
+
+
+
+.tools {
+
+flex:1;
+
+}
+
+
+
+
+#map {
+
+height:90%;
+
+width:100%;
+
+}
+
+
+
+
+.placeholder {
+
+height:90%;
+
+display:flex;
+
+align-items:center;
+
+justify-content:center;
+
+color:#555;
 
 }
 
@@ -24,12 +351,11 @@ position:relative;
 
 #coordinates {
 
-
 position:absolute;
 
-bottom:25px;
+bottom:30px;
 
-left:25px;
+left:30px;
 
 background:#050505;
 
@@ -37,18 +363,14 @@ border:1px solid #333;
 
 padding:12px;
 
-font-size:14px;
-
 color:#00ffff;
 
 z-index:5;
-
 
 }
 
 
 
-/* MapLibre controls */
 
 .maplibregl-ctrl-group {
 
@@ -61,5 +383,20 @@ background:#111;
 .maplibregl-ctrl button {
 
 filter:invert(1);
+
+}
+
+
+
+
+footer {
+
+height:35px;
+
+border-top:1px solid #222;
+
+padding:10px;
+
+color:#777;
 
 }
