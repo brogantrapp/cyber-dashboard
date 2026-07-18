@@ -131,7 +131,7 @@ map.on("click",(e)=>{
 
 new maplibregl.Marker({
 
-color:"#00ffff"
+color:"#00ff88"
 
 })
 
