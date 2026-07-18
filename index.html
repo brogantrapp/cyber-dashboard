@@ -1,1 +1,94 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Cyber Dashboard</title>
+    <link rel="stylesheet" href="style.css">
+</head>
 
+<body>
+
+<!-- Startup Screen -->
+<div id="startup">
+    <img src="assets/logo.svg" id="logo">
+
+    <div class="boot-text">
+        <p>INITIALIZING SYSTEM...</p>
+        <p>LOADING MODULES...</p>
+        <p>SECURITY CHECK COMPLETE</p>
+    </div>
+
+    <h2>PRESS SPACE TO START</h2>
+</div>
+
+
+<!-- Main Application -->
+<div id="app">
+
+    <aside id="sidebar">
+
+        <button id="menu">
+            ☰
+        </button>
+
+        <nav>
+            <button>Dashboard</button>
+            <button>Map</button>
+            <button>IP Lookup</button>
+            <button>Coordinates</button>
+            <button>DNS</button>
+            <button>WHOIS</button>
+            <button>Tools</button>
+            <button>Settings</button>
+        </nav>
+
+    </aside>
+
+
+    <main>
+
+        <header>
+            <input placeholder="Search...">
+
+            <div id="status">
+                ● ONLINE
+            </div>
+        </header>
+
+
+        <section id="workspace">
+
+            <div class="panel map">
+                <h3>MAP</h3>
+                <div class="placeholder">
+                    MAP MODULE OFFLINE
+                </div>
+            </div>
+
+
+            <div class="panel tools">
+                <h3>TOOLS</h3>
+
+                <div class="placeholder">
+                    SELECT A TOOL
+                </div>
+
+            </div>
+
+        </section>
+
+
+        <footer>
+            SYSTEM READY
+        </footer>
+
+    </main>
+
+</div>
+
+
+<script src="script.js"></script>
+
+</body>
+</html>
