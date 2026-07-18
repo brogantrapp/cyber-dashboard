@@ -2,12 +2,16 @@
 <html lang="en">
 
 <head>
+
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
 <title>Cyber Dashboard</title>
 
 <link rel="stylesheet" href="style.css">
+
+<!-- MapLibre -->
+<link href="https://unpkg.com/maplibre-gl@4.7.1/dist/maplibre-gl.css" rel="stylesheet">
 
 </head>
 
@@ -44,7 +48,6 @@
 </button>
 
 
-
 <nav>
 
 <button>Dashboard</button>
@@ -68,7 +71,6 @@
 <main>
 
 
-
 <header>
 
 <input placeholder="Search...">
@@ -90,12 +92,18 @@
 
 <div class="panel map">
 
+
 <h3>MAP</h3>
 
 
-<div class="placeholder">
+<div id="map"></div>
 
-MAP MODULE OFFLINE
+
+<div id="coordinates">
+
+LAT: --
+<br>
+LON: --
 
 </div>
 
@@ -107,6 +115,7 @@ MAP MODULE OFFLINE
 
 
 <div class="panel tools">
+
 
 <h3>TOOLS</h3>
 
@@ -135,8 +144,8 @@ SYSTEM READY
 
 
 
-
 </main>
+
 
 
 </div>
@@ -144,6 +153,8 @@ SYSTEM READY
 
 
 
+
+<script src="https://unpkg.com/maplibre-gl@4.7.1/dist/maplibre-gl.js"></script>
 
 <script src="script.js"></script>
 
