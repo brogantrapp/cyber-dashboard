@@ -1,69 +1,73 @@
 const startup = document.getElementById("startup");
 const app = document.getElementById("app");
 
+const startupGif = document.getElementById("startupGif");
+const idleGif = document.getElementById("idleGif");
+const startText = document.getElementById("startText");
+
+
 let started = false;
 
 
 
-// BOOT TEXT ANIMATION
 
-const bootLines = document.querySelectorAll(".boot-text p");
-
-
-bootLines.forEach((line,index)=>{
+// PLAY INTRO THEN IDLE SCREEN
 
 
-    line.style.opacity="0";
+setTimeout(()=>{
 
 
-    setTimeout(()=>{
+startupGif.style.display="none";
 
 
-        line.style.opacity="1";
+idleGif.style.display="block";
 
 
-    },700 * index);
+startText.style.display="block";
 
 
-});
+},700);
 
 
 
 
 
 
-// SPACE TO START
+
+// START DASHBOARD
 
 
 document.addEventListener("keydown",(event)=>{
 
 
-    if(event.code==="Space" && !started){
+if(event.code==="Space" && !started){
 
 
-        started=true;
+started=true;
 
 
-        startup.style.opacity="0";
+startup.style.opacity="0";
 
 
 
-        setTimeout(()=>{
+setTimeout(()=>{
 
 
-            startup.style.display="none";
+startup.style.display="none";
 
 
-            app.style.opacity="1";
+app.style.opacity="1";
 
 
-        },1000);
+},1000);
 
 
-    }
+
+}
 
 
 });
+
 
 
 
@@ -78,11 +82,10 @@ const menu=document.getElementById("menu");
 const sidebar=document.getElementById("sidebar");
 
 
-
 menu.onclick=()=>{
 
 
-    sidebar.classList.toggle("collapsed");
+sidebar.classList.toggle("collapsed");
 
 
 };
