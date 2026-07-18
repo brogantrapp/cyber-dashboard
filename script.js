@@ -94,16 +94,13 @@ projection:{
 
 
 
-map.addControl(new maplibregl.NavigationControl());
-
-map.on("load",()=>{
+map.on("style.load",()=>{
 
     map.setProjection({
         type:"globe"
     });
 
 });
-
 
 
 const coordinates=document.getElementById("coordinates");
