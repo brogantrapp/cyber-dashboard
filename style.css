@@ -1,356 +1,65 @@
-* {
-box-sizing:border-box;
-}
+/* MAP */
 
 
-body {
-
-margin:0;
-
-background:#050505;
-
-color:#e6e6e6;
-
-font-family:"Courier New", monospace;
-
-overflow:hidden;
-
-}
-
-
-
-
-/* STARTUP */
-
-
-#startup {
-
-    position:fixed;
-
-    inset:0;
-
-    background:black;
-
-    display:flex;
-
-    justify-content:center;
-
-    align-items:center;
-
-    z-index:10;
-
-    transition:opacity 1s;
-
-}
-
-
-
-#idleGif {
-
-    position:absolute;
-
-    width:100%;
-
-    height:100%;
-
-    object-fit:cover;
-
-}
-
-
-
-#startText {
-
-    position:absolute;
-
-    bottom:70px;
-
-    color:white;
-
-    font-size:22px;
-
-    letter-spacing:5px;
-
-    text-shadow:0 0 10px black;
-
-    animation:blink 1.5s infinite;
-
-}
-
-
-
-@keyframes blink {
-
-    50% {
-
-        opacity:.3;
-
-    }
-
-}
-
-
-
-
-
-
-/* APP */
-
-
-#app {
-
-height:100vh;
-
-display:flex;
-
-opacity:0;
-
-transition:opacity 1s;
-
-}
-
-
-
-
-
-#sidebar {
-
-width:230px;
-
-background:#080808;
-
-border-right:1px solid #222;
-
-transition:.4s;
-
-}
-
-
-
-
-
-#sidebar.collapsed {
-
-width:60px;
-
-}
-
-
-
-
-
-#menu {
+#map {
 
 width:100%;
 
-height:50px;
+height:90%;
 
-background:none;
-
-border:none;
-
-color:white;
-
-font-size:25px;
-
-cursor:pointer;
+background:#000;
 
 }
-
-
-
-
-
-nav button {
-
-
-width:100%;
-
-padding:15px;
-
-background:none;
-
-border:none;
-
-color:#aaa;
-
-text-align:left;
-
-cursor:pointer;
-
-
-}
-
-
-
-
-nav button:hover {
-
-
-background:#111;
-
-color:#00ffff;
-
-
-}
-
-
-
-
-
-main {
-
-
-flex:1;
-
-display:flex;
-
-flex-direction:column;
-
-
-}
-
-
-
-
-header {
-
-
-height:55px;
-
-border-bottom:1px solid #222;
-
-display:flex;
-
-align-items:center;
-
-justify-content:space-between;
-
-padding:10px 20px;
-
-
-}
-
-
-
-
-
-header input {
-
-
-width:350px;
-
-background:#111;
-
-border:1px solid #333;
-
-color:white;
-
-padding:10px;
-
-
-}
-
-
-
-
-
-#status {
-
-
-color:#00ff88;
-
-
-}
-
-
-
-
-
-#workspace {
-
-
-flex:1;
-
-display:flex;
-
-gap:15px;
-
-padding:15px;
-
-
-}
-
-
-
-
-
-.panel {
-
-
-background:#090909;
-
-border:1px solid #222;
-
-padding:15px;
-
-
-}
-
-
 
 
 
 .map {
 
-flex:2;
+position:relative;
 
 }
 
 
 
 
-
-.tools {
-
-flex:1;
-
-}
+#coordinates {
 
 
+position:absolute;
 
+bottom:25px;
 
+left:25px;
 
-.placeholder {
+background:#050505;
 
+border:1px solid #333;
 
-height:90%;
+padding:12px;
 
-display:flex;
+font-size:14px;
 
-align-items:center;
+color:#00ffff;
 
-justify-content:center;
-
-color:#555;
+z-index:5;
 
 
 }
 
 
 
+/* MapLibre controls */
+
+.maplibregl-ctrl-group {
+
+background:#111;
+
+}
 
 
-footer {
 
+.maplibregl-ctrl button {
 
-height:35px;
-
-border-top:1px solid #222;
-
-padding:10px;
-
-color:#777;
-
+filter:invert(1);
 
 }
