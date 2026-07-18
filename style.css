@@ -1,1 +1,279 @@
+* {
+    box-sizing: border-box;
+}
 
+body {
+    margin: 0;
+    background: #050505;
+    color: #e6e6e6;
+    font-family: "Courier New", monospace;
+    overflow: hidden;
+}
+
+
+/* STARTUP */
+
+#startup {
+
+    position: fixed;
+    inset: 0;
+
+    background: black;
+
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+
+    z-index: 10;
+}
+
+
+#logo {
+
+    width: 180px;
+    margin-bottom: 40px;
+
+    filter: drop-shadow(0 0 15px cyan);
+}
+
+
+.boot-text {
+
+    font-size: 14px;
+    color: #00ffff;
+    line-height: 1.8;
+
+}
+
+
+#startup h2 {
+
+    margin-top: 50px;
+
+    animation: blink 1.5s infinite;
+
+}
+
+
+
+@keyframes blink {
+
+    50% {
+        opacity: .3;
+    }
+
+}
+
+
+/* APP */
+
+
+#app {
+
+    height: 100vh;
+
+    display: flex;
+
+    opacity: 0;
+
+    transition: opacity 1s;
+
+}
+
+
+
+#sidebar {
+
+    width: 230px;
+
+    border-right: 1px solid #222;
+
+    background: #080808;
+
+    transition: .4s;
+
+}
+
+
+#sidebar.collapsed {
+
+    width: 60px;
+
+}
+
+
+
+#menu {
+
+    width:100%;
+
+    height:50px;
+
+    background:none;
+
+    border:none;
+
+    color:white;
+
+    font-size:25px;
+
+    cursor:pointer;
+
+}
+
+
+
+nav button {
+
+    width:100%;
+
+    padding:15px;
+
+    background:none;
+
+    border:none;
+
+    color:#aaa;
+
+    text-align:left;
+
+    cursor:pointer;
+
+}
+
+
+nav button:hover {
+
+    color:#00ffff;
+
+    background:#111;
+
+}
+
+
+
+
+main {
+
+    flex:1;
+
+    display:flex;
+
+    flex-direction:column;
+
+}
+
+
+
+header {
+
+    height:55px;
+
+    border-bottom:1px solid #222;
+
+    display:flex;
+
+    align-items:center;
+
+    justify-content:space-between;
+
+    padding:10px 20px;
+
+}
+
+
+
+header input {
+
+    width:350px;
+
+    background:#111;
+
+    border:1px solid #333;
+
+    color:white;
+
+    padding:10px;
+
+}
+
+
+
+#status {
+
+    color:#00ff88;
+
+}
+
+
+
+#workspace {
+
+    flex:1;
+
+    display:flex;
+
+    gap:15px;
+
+    padding:15px;
+
+}
+
+
+
+.panel {
+
+    border:1px solid #222;
+
+    background:#090909;
+
+    padding:15px;
+
+}
+
+
+
+.map {
+
+    flex:2;
+
+}
+
+
+
+.tools {
+
+    flex:1;
+
+}
+
+
+
+.placeholder {
+
+    height:90%;
+
+    display:flex;
+
+    justify-content:center;
+
+    align-items:center;
+
+    color:#555;
+
+}
+
+
+
+footer {
+
+    height:35px;
+
+    border-top:1px solid #222;
+
+    padding:10px;
+
+    color:#777;
+
+}
