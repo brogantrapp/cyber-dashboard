@@ -1,22 +1,19 @@
 * {
-
-    box-sizing:border-box;
-
+box-sizing:border-box;
 }
-
 
 
 body {
 
-    margin:0;
+margin:0;
 
-    background:#050505;
+background:#050505;
 
-    color:#e6e6e6;
+color:#e6e6e6;
 
-    font-family:"Courier New", monospace;
+font-family:"Courier New", monospace;
 
-    overflow:hidden;
+overflow:hidden;
 
 }
 
@@ -28,72 +25,23 @@ body {
 
 #startup {
 
+position:fixed;
 
-    position:fixed;
+inset:0;
 
-    inset:0;
+background:black;
 
-    background:black;
+display:flex;
 
-    display:flex;
+justify-content:center;
 
-    flex-direction:column;
+align-items:center;
 
-    justify-content:center;
+flex-direction:column;
 
-    align-items:center;
+z-index:10;
 
-    z-index:10;
-
-
-}
-
-
-
-#startup::before {
-
-
-    content:"";
-
-    position:absolute;
-
-    inset:0;
-
-
-    background:
-
-    repeating-linear-gradient(
-
-    0deg,
-
-    rgba(255,255,255,.03),
-
-    rgba(255,255,255,.03) 1px,
-
-    transparent 1px,
-
-    transparent 3px
-
-    );
-
-
-}
-
-
-
-
-.glitch-text {
-
-
-    font-size:40px;
-
-    letter-spacing:8px;
-
-    color:#00ffff;
-
-
-    animation:glitch 1s infinite;
-
+transition:opacity 1s;
 
 }
 
@@ -101,17 +49,15 @@ body {
 
 
 
-.boot-text {
+#startupGif {
 
+position:absolute;
 
-    margin-top:35px;
+width:100%;
 
-    color:#00ffff;
+height:100%;
 
-    font-size:14px;
-
-    line-height:1.8;
-
+object-fit:cover;
 
 }
 
@@ -119,50 +65,47 @@ body {
 
 
 
-.boot-text p {
+#idleGif {
 
+display:none;
 
-    transition:.5s;
+width:300px;
 
+filter:drop-shadow(0 0 25px cyan);
 
-}
-
-
-
-
-
-#logo {
-
-
-    width:180px;
-
-    margin-top:40px;
-
-
-    filter:drop-shadow(0 0 15px cyan);
-
-
-    animation:
-
-    logoPulse 2s infinite,
-
-    glitch 3s infinite;
-
+animation:glitch 3s infinite;
 
 }
 
 
 
 
-#startup h2 {
+#startText {
+
+display:none;
+
+position:absolute;
+
+bottom:80px;
+
+letter-spacing:4px;
+
+color:white;
+
+animation:blink 1.5s infinite;
+
+}
 
 
-    margin-top:50px;
 
-    letter-spacing:3px;
 
-    animation:blink 1.5s infinite;
+@keyframes blink {
 
+50% {
+
+opacity:.3;
+
+}
 
 }
 
@@ -173,70 +116,39 @@ body {
 @keyframes glitch {
 
 
-    0% {
+0% {
 
-        transform:translate(0);
-
-    }
-
-
-    20% {
-
-        transform:translate(-3px,2px);
-
-    }
-
-
-    40% {
-
-        transform:translate(3px,-2px);
-
-    }
-
-
-    60% {
-
-        transform:translate(-2px,0);
-
-    }
-
-
-    100% {
-
-        transform:translate(0);
-
-    }
+transform:translate(0);
 
 }
 
 
+20% {
 
-
-
-@keyframes logoPulse {
-
-
-    50% {
-
-        filter:drop-shadow(0 0 25px cyan);
-
-    }
-
+transform:translate(-3px,2px);
 
 }
 
 
+40% {
+
+transform:translate(3px,-2px);
+
+}
 
 
+60% {
 
-@keyframes blink {
+transform:translate(-2px,0);
+
+}
 
 
-    50% {
+100% {
 
-        opacity:.3;
+transform:translate(0);
 
-    }
+}
 
 
 }
@@ -246,20 +158,18 @@ body {
 
 
 
-/* APPLICATION */
+/* APP */
 
 
 #app {
 
+height:100vh;
 
-    height:100vh;
+display:flex;
 
-    display:flex;
+opacity:0;
 
-    opacity:0;
-
-    transition:opacity 1s;
-
+transition:opacity 1s;
 
 }
 
@@ -269,15 +179,13 @@ body {
 
 #sidebar {
 
+width:230px;
 
-    width:230px;
+background:#080808;
 
-    background:#080808;
+border-right:1px solid #222;
 
-    border-right:1px solid #222;
-
-    transition:.4s;
-
+transition:.4s;
 
 }
 
@@ -287,9 +195,7 @@ body {
 
 #sidebar.collapsed {
 
-
-    width:60px;
-
+width:60px;
 
 }
 
@@ -299,21 +205,19 @@ body {
 
 #menu {
 
+width:100%;
 
-    width:100%;
+height:50px;
 
-    height:50px;
+background:none;
 
-    background:none;
+border:none;
 
-    border:none;
+color:white;
 
-    color:white;
+font-size:25px;
 
-    font-size:25px;
-
-    cursor:pointer;
-
+cursor:pointer;
 
 }
 
@@ -324,19 +228,19 @@ body {
 nav button {
 
 
-    width:100%;
+width:100%;
 
-    padding:15px;
+padding:15px;
 
-    background:none;
+background:none;
 
-    border:none;
+border:none;
 
-    color:#aaa;
+color:#aaa;
 
-    text-align:left;
+text-align:left;
 
-    cursor:pointer;
+cursor:pointer;
 
 
 }
@@ -347,9 +251,9 @@ nav button {
 nav button:hover {
 
 
-    background:#111;
+background:#111;
 
-    color:#00ffff;
+color:#00ffff;
 
 
 }
@@ -361,11 +265,11 @@ nav button:hover {
 main {
 
 
-    flex:1;
+flex:1;
 
-    display:flex;
+display:flex;
 
-    flex-direction:column;
+flex-direction:column;
 
 
 }
@@ -373,21 +277,20 @@ main {
 
 
 
-
 header {
 
 
-    height:55px;
+height:55px;
 
-    border-bottom:1px solid #222;
+border-bottom:1px solid #222;
 
-    display:flex;
+display:flex;
 
-    align-items:center;
+align-items:center;
 
-    justify-content:space-between;
+justify-content:space-between;
 
-    padding:10px 20px;
+padding:10px 20px;
 
 
 }
@@ -399,15 +302,15 @@ header {
 header input {
 
 
-    width:350px;
+width:350px;
 
-    background:#111;
+background:#111;
 
-    border:1px solid #333;
+border:1px solid #333;
 
-    color:white;
+color:white;
 
-    padding:10px;
+padding:10px;
 
 
 }
@@ -415,10 +318,11 @@ header input {
 
 
 
+
 #status {
 
 
-    color:#00ff88;
+color:#00ff88;
 
 
 }
@@ -430,13 +334,13 @@ header input {
 #workspace {
 
 
-    flex:1;
+flex:1;
 
-    display:flex;
+display:flex;
 
-    gap:15px;
+gap:15px;
 
-    padding:15px;
+padding:15px;
 
 
 }
@@ -448,11 +352,11 @@ header input {
 .panel {
 
 
-    background:#090909;
+background:#090909;
 
-    border:1px solid #222;
+border:1px solid #222;
 
-    padding:15px;
+padding:15px;
 
 
 }
@@ -460,11 +364,10 @@ header input {
 
 
 
+
 .map {
 
-
-    flex:2;
-
+flex:2;
 
 }
 
@@ -474,9 +377,7 @@ header input {
 
 .tools {
 
-
-    flex:1;
-
+flex:1;
 
 }
 
@@ -487,15 +388,15 @@ header input {
 .placeholder {
 
 
-    height:90%;
+height:90%;
 
-    display:flex;
+display:flex;
 
-    justify-content:center;
+align-items:center;
 
-    align-items:center;
+justify-content:center;
 
-    color:#555;
+color:#555;
 
 
 }
@@ -507,13 +408,13 @@ header input {
 footer {
 
 
-    height:35px;
+height:35px;
 
-    border-top:1px solid #222;
+border-top:1px solid #222;
 
-    padding:10px;
+padding:10px;
 
-    color:#777;
+color:#777;
 
 
 }
