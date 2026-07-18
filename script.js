@@ -1,13 +1,8 @@
 const startup = document.getElementById("startup");
 const app = document.getElementById("app");
 
-
 let started = false;
 
-
-
-
-// START DASHBOARD
 
 
 document.addEventListener("keydown",(event)=>{
@@ -27,12 +22,20 @@ setTimeout(()=>{
 
 startup.style.display="none";
 
+
 app.style.opacity="1";
+
+
+setTimeout(()=>{
 
 initializeMap();
 
+},500);
+
+
 
 },1000);
+
 
 
 }
@@ -78,19 +81,14 @@ const map = new maplibregl.Map({
 
 container:"map",
 
-
 style:"https://demotiles.maplibre.org/style.json",
 
-
 center:[0,20],
-
 
 zoom:1.5
 
 
-
 });
-
 
 
 
@@ -98,23 +96,24 @@ map.addControl(new maplibregl.NavigationControl());
 
 
 
-const coords=document.getElementById("coordinates");
-
+const coordinates=document.getElementById("coordinates");
 
 
 
 map.on("mousemove",(e)=>{
 
 
-coords.innerHTML=
+coordinates.innerHTML=
 
-"LAT: "+e.lngLat.lat.toFixed(5)+
-"<br>"+
-"LON: "+e.lngLat.lng.toFixed(5);
+"LAT: "+
+e.lngLat.lat.toFixed(5)+
+
+"<br>LON: "+
+
+e.lngLat.lng.toFixed(5);
 
 
 });
-
 
 
 
@@ -134,16 +133,19 @@ color:"#00ffff"
 
 
 
-coords.innerHTML=
+coordinates.innerHTML=
 
-"SELECTED<br><br>"+
-"LAT: "+e.lngLat.lat.toFixed(6)+
-"<br>"+
-"LON: "+e.lngLat.lng.toFixed(6);
+"SELECTED<br><br>LAT: "+
+
+e.lngLat.lat.toFixed(6)+
+
+"<br>LON: "+
+
+e.lngLat.lng.toFixed(6);
+
 
 
 });
-
 
 
 }
