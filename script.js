@@ -3,42 +3,45 @@ const app = document.getElementById("app");
 
 let started = false;
 let mapLoaded = false;
+let map;
+let selectedMarker = null;
 
 
 
-// START DASHBOARD
-
-document.addEventListener("keydown",(event)=>{
 
 
-    if(event.code==="Space" && !started){
+/* START DASHBOARD */
 
 
-        started=true;
+document.addEventListener("keydown", (event) => {
 
 
-        startup.style.opacity="0";
+    if (event.code === "Space" && !started) {
 
 
-        setTimeout(()=>{
+        started = true;
 
 
-            startup.style.display="none";
+        startup.style.opacity = "0";
 
 
-            app.style.opacity="1";
+        setTimeout(() => {
 
 
-            setTimeout(()=>{
+            startup.style.display = "none";
+
+
+            app.style.opacity = "1";
+
+
+            setTimeout(() => {
 
                 initializeMap();
 
-            },800);
+            }, 500);
 
 
-
-        },1000);
-
+        }, 1000);
 
 
     }
@@ -50,14 +53,14 @@ document.addEventListener("keydown",(event)=>{
 
 
 
-// SIDEBAR
-
-const menu=document.getElementById("menu");
-
-const sidebar=document.getElementById("sidebar");
+/* SIDEBAR */
 
 
-menu.onclick=()=>{
+const menu = document.getElementById("menu");
+const sidebar = document.getElementById("sidebar");
+
+
+menu.onclick = () => {
 
     sidebar.classList.toggle("collapsed");
 
@@ -67,80 +70,176 @@ menu.onclick=()=>{
 
 
 
+/* MAP */
 
 
-// MAP INITIALIZATION
-
-function initializeMap(){
+function initializeMap() {
 
 
-if(mapLoaded) return;
+    if (mapLoaded) return;
 
 
-mapLoaded=true;
+    mapLoaded = true;
 
 
-
-const map = new maplibregl.Map({
-
-
-    container:"map",
+    map = new maplibregl.Map({
 
 
-    style:
-    "https://basemaps.cartocdn.com/gl/dark-matter-gl-style/style.json",
+        container: "map",
 
 
-    center:[0,25],
+        style:
+            "https://basemaps.cartocdn.com/gl/dark-matter-gl-style/style.json",
 
 
-    zoom:1.6,
+        center: [0, 20],
 
 
-    pitch:25,
+        zoom: 1.5,
 
 
-    bearing:0,
+        pitch: 0,
 
 
-    projection:"globe",
+        bearing: 0,
 
 
-    antialias:true
+        antialias: true
 
 
-
-});
-
+    });
 
 
+    map.addControl(
+
+        new maplibregl.NavigationControl({
+
+            visualizePitch: false
+
+        })
+
+    );
 
 
-
-// CONTROLS
-
-map.addControl(
-
-new maplibregl.NavigationControl({
-
-    visualizePitch:true
-
-})
-
-);
+    const coordinates =
+        document.getElementById("coordinates");
 
 
 
 
 
-// GLOBE SETTINGS
-
-map.on("style.load",()=>{
+    /* LIVE COORDINATES */
 
 
-    map.setProjection({
+    map.on("mousemove", (event) => {
 
-        type:"globe"
+
+        coordinates.innerHTML =
+
+            "LAT: " +
+
+            event.lngLat.lat.toFixed(5) +
+
+            "<br>LON: " +
+
+            event.lngLat.lng.toFixed(5);
+
+
+    });
+
+
+
+
+
+    /* CLICK MAP */
+
+
+    map.on("click", (event) => {
+
+
+        if (selectedMarker) {
+
+            selectedMarker.remove();
+
+        }
+
+
+        selectedMarker = new maplibregl.Marker({
+
+            color: "#00ffff"
+
+        })
+
+        .setLngLat(event.lngLat)
+
+        .addTo(map);
+
+
+        coordinates.innerHTML =
+
+            "SELECTED" +
+
+            "<br><br>LAT: " +
+
+            event.lngLat.lat.toFixed(6) +
+
+            "<br>LON: " +
+
+            event.lngLat.lng.toFixed(6);
+
+
+    });
+
+
+}
+
+
+
+
+
+/* SIDEBAR TOOL BUTTONS */
+
+
+const toolButtons =
+    document.querySelectorAll("nav button");
+
+
+toolButtons.forEach((button) => {
+
+
+    button.addEventListener("click", () => {
+
+
+        const tool = button.dataset.tool;
+
+
+        if (tool === "iplookup") {
+
+            showIPLookup();
+
+        }
+
+
+        else if (tool === "map") {
+
+            showMapTool();
+
+        }
+
+
+        else if (tool === "coordinates") {
+
+            showCoordinatesTool();
+
+        }
+
+
+        else {
+
+            showPlaceholder(tool);
+
+        }
+
 
     });
 
@@ -151,143 +250,717 @@ map.on("style.load",()=>{
 
 
 
-// ATMOSPHERE
-
-map.on("load",()=>{
+/* IP LOOKUP TOOL */
 
 
-    map.setFog({
+function showIPLookup() {
 
 
-        color:"rgb(5,5,10)",
+    const title =
+        document.getElementById("toolTitle");
 
 
-        "high-color":"rgb(20,40,80)",
+    const content =
+        document.getElementById("toolContent");
 
 
-        "space-color":"rgb(0,0,0)",
+    title.textContent = "IP LOOKUP";
 
 
-        "horizon-blend":0.05
+    content.innerHTML = `
 
+        <div class="toolBox">
+
+
+            <div class="toolLabel">
+
+                ENTER IP ADDRESS OR HOSTNAME
+
+            </div>
+
+
+            <input
+
+                id="ipInput"
+
+                class="toolInput"
+
+                placeholder="Example: 8.8.8.8"
+
+            >
+
+
+            <button
+
+                id="lookupButton"
+
+                class="toolButton"
+
+            >
+
+                LOOKUP
+
+            </button>
+
+
+            <div
+
+                id="ipResults"
+
+                class="results"
+
+            >
+
+                <div class="toolMessage">
+
+                    ENTER AN IP ADDRESS OR HOSTNAME
+
+                    AND PRESS LOOKUP.
+
+                </div>
+
+            </div>
+
+
+        </div>
+
+    `;
+
+
+    const input =
+        document.getElementById("ipInput");
+
+
+    const button =
+        document.getElementById("lookupButton");
+
+
+    input.addEventListener("keydown", (event) => {
+
+
+        if (event.key === "Enter") {
+
+            lookupIP();
+
+        }
 
 
     });
 
 
+    button.addEventListener("click", lookupIP);
 
-    map.easeTo({
 
-        pitch:35,
+}
 
-        duration:1500
+
+
+
+
+/* PERFORM IP LOOKUP */
+
+
+async function lookupIP() {
+
+
+    const input =
+        document.getElementById("ipInput");
+
+
+    const button =
+        document.getElementById("lookupButton");
+
+
+    const results =
+        document.getElementById("ipResults");
+
+
+    const query =
+        input.value.trim();
+
+
+    if (!query) {
+
+
+        results.innerHTML = `
+
+            <div class="toolMessage">
+
+                PLEASE ENTER AN IP ADDRESS OR HOSTNAME.
+
+            </div>
+
+        `;
+
+
+        return;
+
+    }
+
+
+    button.disabled = true;
+
+    button.textContent = "LOOKING UP...";
+
+
+    results.innerHTML = `
+
+        <div class="toolMessage">
+
+            CONTACTING GEOLOCATION SERVICE...
+
+        </div>
+
+    `;
+
+
+    try {
+
+
+        const response = await fetch(
+
+            `https://ipapi.co/${encodeURIComponent(query)}/json/`
+
+        );
+
+
+        if (!response.ok) {
+
+            throw new Error("Lookup failed");
+
+        }
+
+
+        const data = await response.json();
+
+
+        if (data.error) {
+
+            throw new Error(
+
+                data.reason || "Invalid IP address"
+
+            );
+
+        }
+
+
+        displayIPResults(data);
+
+
+    }
+
+
+    catch (error) {
+
+
+        results.innerHTML = `
+
+            <div class="toolMessage">
+
+                LOOKUP FAILED.
+
+                <br><br>
+
+                ${error.message}
+
+            </div>
+
+        `;
+
+
+    }
+
+
+    finally {
+
+
+        button.disabled = false;
+
+        button.textContent = "LOOKUP";
+
+
+    }
+
+
+}
+
+
+
+
+
+/* DISPLAY IP RESULTS */
+
+
+function displayIPResults(data) {
+
+
+    const results =
+        document.getElementById("ipResults");
+
+
+    const latitude =
+        data.latitude ?? "N/A";
+
+
+    const longitude =
+        data.longitude ?? "N/A";
+
+
+    results.innerHTML = `
+
+        <div class="results">
+
+
+            <div class="resultRow">
+
+                <span class="resultLabel">
+
+                    IP ADDRESS
+
+                </span>
+
+
+                <span class="resultValue">
+
+                    ${data.ip || "N/A"}
+
+                </span>
+
+            </div>
+
+
+            <div class="resultRow">
+
+                <span class="resultLabel">
+
+                    VERSION
+
+                </span>
+
+
+                <span class="resultValue">
+
+                    ${data.version || "N/A"}
+
+                </span>
+
+            </div>
+
+
+            <div class="resultRow">
+
+                <span class="resultLabel">
+
+                    COUNTRY
+
+                </span>
+
+
+                <span class="resultValue">
+
+                    ${data.country_name || "N/A"}
+
+                </span>
+
+            </div>
+
+
+            <div class="resultRow">
+
+                <span class="resultLabel">
+
+                    REGION
+
+                </span>
+
+
+                <span class="resultValue">
+
+                    ${data.region || "N/A"}
+
+                </span>
+
+            </div>
+
+
+            <div class="resultRow">
+
+                <span class="resultLabel">
+
+                    CITY
+
+                </span>
+
+
+                <span class="resultValue">
+
+                    ${data.city || "N/A"}
+
+                </span>
+
+            </div>
+
+
+            <div class="resultRow">
+
+                <span class="resultLabel">
+
+                    ISP
+
+                </span>
+
+
+                <span class="resultValue">
+
+                    ${data.org || "N/A"}
+
+                </span>
+
+            </div>
+
+
+            <div class="resultRow">
+
+                <span class="resultLabel">
+
+                    ASN
+
+                </span>
+
+
+                <span class="resultValue">
+
+                    ${data.asn || "N/A"}
+
+                </span>
+
+            </div>
+
+
+            <div class="resultRow">
+
+                <span class="resultLabel">
+
+                    TIMEZONE
+
+                </span>
+
+
+                <span class="resultValue">
+
+                    ${data.timezone || "N/A"}
+
+                </span>
+
+            </div>
+
+
+            <div class="resultRow">
+
+                <span class="resultLabel">
+
+                    LATITUDE
+
+                </span>
+
+
+                <span class="resultValue">
+
+                    ${latitude}
+
+                </span>
+
+            </div>
+
+
+            <div class="resultRow">
+
+                <span class="resultLabel">
+
+                    LONGITUDE
+
+                </span>
+
+
+                <span class="resultValue">
+
+                    ${longitude}
+
+                </span>
+
+            </div>
+
+
+            <button
+
+                id="showOnMapButton"
+
+                class="toolButton"
+
+            >
+
+                SHOW ON MAP
+
+            </button>
+
+
+            <button
+
+                id="copyResultsButton"
+
+                class="toolButton"
+
+            >
+
+                COPY RESULTS
+
+            </button>
+
+
+        </div>
+
+    `;
+
+
+    document
+
+        .getElementById("showOnMapButton")
+
+        .addEventListener("click", () => {
+
+
+            if (
+
+                typeof data.latitude === "number" &&
+
+                typeof data.longitude === "number"
+
+            ) {
+
+
+                showIPOnMap(
+
+                    data.latitude,
+
+                    data.longitude,
+
+                    data.ip
+
+                );
+
+            }
+
+
+        });
+
+
+    document
+
+        .getElementById("copyResultsButton")
+
+        .addEventListener("click", () => {
+
+
+            const text = `
+
+IP ADDRESS: ${data.ip || "N/A"}
+
+VERSION: ${data.version || "N/A"}
+
+COUNTRY: ${data.country_name || "N/A"}
+
+REGION: ${data.region || "N/A"}
+
+CITY: ${data.city || "N/A"}
+
+ISP: ${data.org || "N/A"}
+
+ASN: ${data.asn || "N/A"}
+
+TIMEZONE: ${data.timezone || "N/A"}
+
+LATITUDE: ${latitude}
+
+LONGITUDE: ${longitude}
+
+            `.trim();
+
+
+            navigator.clipboard.writeText(text);
+
+
+        });
+
+
+}
+
+
+
+
+
+/* SHOW IP LOCATION ON MAP */
+
+
+function showIPOnMap(latitude, longitude, ip) {
+
+
+    if (!map) return;
+
+
+    map.flyTo({
+
+        center: [longitude, latitude],
+
+        zoom: 8,
+
+        pitch: 0,
+
+        duration: 1500
 
     });
 
 
+    if (selectedMarker) {
 
-});
+        selectedMarker.remove();
 
+    }
 
 
+    selectedMarker = new maplibregl.Marker({
 
+        color: "#00ff88"
 
+    })
 
-const coordinates=document.getElementById("coordinates");
 
+    .setLngLat([longitude, latitude])
 
+    .addTo(map);
 
 
+    document.getElementById("coordinates").innerHTML =
 
-// LIVE COORDINATES
+        "IP LOCATION" +
 
-map.on("mousemove",(e)=>{
+        "<br><br>IP: " +
 
+        ip +
 
-coordinates.innerHTML=
+        "<br>LAT: " +
 
+        latitude.toFixed(6) +
 
-"LAT: "
+        "<br>LON: " +
 
-+e.lngLat.lat.toFixed(5)
+        longitude.toFixed(6);
 
-+
 
-"<br>LON: "
+}
 
-+e.lngLat.lng.toFixed(5);
 
 
 
-});
 
+/* MAP TOOL */
 
 
+function showMapTool() {
 
 
+    document.getElementById("toolTitle")
 
+        .textContent = "MAP";
 
-// CLICK MARKER
 
-map.on("click",(e)=>{
+    document.getElementById("toolContent")
 
+        .innerHTML = `
 
-new maplibregl.Marker({
+            <div class="toolMessage">
 
-    color:"#00ffff"
+                CLICK ANYWHERE ON THE MAP TO
 
-})
+                SELECT A LOCATION.
 
+                <br><br>
 
-.setLngLat(e.lngLat)
+                LIVE COORDINATES ARE DISPLAYED
 
+                IN THE MAP PANEL.
 
-.addTo(map);
+            </div>
 
+        `;
 
 
+}
 
 
-coordinates.innerHTML=
 
 
-"SELECTED"
 
-+
+/* COORDINATES TOOL */
 
-"<br><br>LAT: "
 
-+e.lngLat.lat.toFixed(6)
+function showCoordinatesTool() {
 
-+
 
-"<br>LON: "
+    document.getElementById("toolTitle")
 
-+e.lngLat.lng.toFixed(6);
+        .textContent = "COORDINATES";
 
 
+    document.getElementById("toolContent")
 
-});
+        .innerHTML = `
 
+            <div class="toolMessage">
 
+                CLICK A LOCATION ON THE MAP
 
+                TO VIEW ITS LATITUDE AND LONGITUDE.
 
+                <br><br>
 
+                COORDINATE CONVERSION TOOLS
 
-// BETTER GLOBE ROTATION FEEL
+                WILL BE ADDED HERE.
 
-map.on("dragend",()=>{
+            </div>
 
+        `;
 
-map.easeTo({
 
-    duration:500
+}
 
-});
 
 
-});
 
+
+/* PLACEHOLDER TOOLS */
+
+
+function showPlaceholder(tool) {
+
+
+    document.getElementById("toolTitle")
+
+        .textContent = tool.toUpperCase();
+
+
+    document.getElementById("toolContent")
+
+        .innerHTML = `
+
+            <div class="placeholder">
+
+                MODULE NOT YET INITIALIZED
+
+            </div>
+
+        `;
 
 
 }
