@@ -274,7 +274,7 @@ function showIPLookup() {
 
             <div class="toolLabel">
 
-                ENTER IP ADDRESS OR HOSTNAME
+                ENTER IP ADDRESS
 
             </div>
 
@@ -303,6 +303,19 @@ function showIPLookup() {
             </button>
 
 
+            <button
+
+                id="myIPButton"
+
+                class="toolButton"
+
+            >
+
+                MY IP
+
+            </button>
+
+
             <div
 
                 id="ipResults"
@@ -313,9 +326,9 @@ function showIPLookup() {
 
                 <div class="toolMessage">
 
-                    ENTER AN IP ADDRESS OR HOSTNAME
+                    ENTER AN IP ADDRESS AND PRESS LOOKUP,
 
-                    AND PRESS LOOKUP.
+                    OR SELECT MY IP.
 
                 </div>
 
@@ -335,6 +348,10 @@ function showIPLookup() {
         document.getElementById("lookupButton");
 
 
+    const myIPButton =
+        document.getElementById("myIPButton");
+
+
     input.addEventListener("keydown", (event) => {
 
 
@@ -351,13 +368,16 @@ function showIPLookup() {
     button.addEventListener("click", lookupIP);
 
 
+    myIPButton.addEventListener("click", getMyIP);
+
+
 }
 
 
 
 
 
-/* PERFORM IP LOOKUP */
+/* NORMAL IP LOOKUP */
 
 
 async function lookupIP() {
@@ -386,7 +406,7 @@ async function lookupIP() {
 
             <div class="toolMessage">
 
-                PLEASE ENTER AN IP ADDRESS OR HOSTNAME.
+                PLEASE ENTER AN IP ADDRESS.
 
             </div>
 
@@ -478,6 +498,118 @@ async function lookupIP() {
         button.disabled = false;
 
         button.textContent = "LOOKUP";
+
+
+    }
+
+
+}
+
+
+
+
+
+/* GET MY PUBLIC IP */
+
+
+async function getMyIP() {
+
+
+    const input =
+        document.getElementById("ipInput");
+
+
+    const myIPButton =
+        document.getElementById("myIPButton");
+
+
+    const results =
+        document.getElementById("ipResults");
+
+
+    myIPButton.disabled = true;
+
+    myIPButton.textContent = "DETECTING...";
+
+
+    results.innerHTML = `
+
+        <div class="toolMessage">
+
+            DETECTING PUBLIC IP ADDRESS...
+
+        </div>
+
+    `;
+
+
+    try {
+
+
+        const response = await fetch(
+
+            "https://ipapi.co/json/"
+
+        );
+
+
+        if (!response.ok) {
+
+            throw new Error("Could not detect public IP");
+
+        }
+
+
+        const data = await response.json();
+
+
+        if (data.error || !data.ip) {
+
+            throw new Error(
+
+                data.reason || "Could not detect public IP"
+
+            );
+
+        }
+
+
+        input.value = data.ip;
+
+
+        displayIPResults(data);
+
+
+    }
+
+
+    catch (error) {
+
+
+        results.innerHTML = `
+
+            <div class="toolMessage">
+
+                MY IP LOOKUP FAILED.
+
+                <br><br>
+
+                ${error.message}
+
+            </div>
+
+        `;
+
+
+    }
+
+
+    finally {
+
+
+        myIPButton.disabled = false;
+
+        myIPButton.textContent = "MY IP";
 
 
     }
