@@ -1,23 +1,24 @@
 * {
 
-box-sizing:border-box;
+    box-sizing: border-box;
 
 }
 
 
 body {
 
-margin:0;
+    margin: 0;
 
-background:#050505;
+    background: #050505;
 
-color:#e6e6e6;
+    color: #e6e6e6;
 
-font-family:"Courier New", monospace;
+    font-family: "Courier New", monospace;
 
-overflow:hidden;
+    overflow: hidden;
 
 }
+
 
 
 
@@ -27,376 +28,566 @@ overflow:hidden;
 
 #startup {
 
-position:fixed;
+    position: fixed;
 
-inset:0;
+    inset: 0;
 
-background:black;
+    background: black;
 
-display:flex;
+    display: flex;
 
-justify-content:center;
+    justify-content: center;
 
-align-items:center;
+    align-items: center;
 
-z-index:10;
+    z-index: 10;
 
-transition:opacity 1s;
+    transition: opacity 1s;
 
 }
-
 
 
 #idleGif {
 
-position:absolute;
+    position: absolute;
 
-inset:0;
+    inset: 0;
 
-width:100%;
+    width: 100%;
 
-height:100%;
+    height: 100%;
 
-object-fit:cover;
+    object-fit: cover;
 
-z-index:1;
+    z-index: 1;
 
 }
-
 
 
 #startOverlay {
 
-position:absolute;
+    position: absolute;
 
-inset:0;
+    inset: 0;
 
-display:flex;
+    display: flex;
 
-justify-content:center;
+    justify-content: center;
 
-align-items:flex-end;
+    align-items: flex-end;
 
-padding-bottom:80px;
+    padding-bottom: 80px;
 
-z-index:2;
+    z-index: 2;
 
 }
-
 
 
 #startOverlay h2 {
 
-color:white;
+    color: white;
 
-font-size:22px;
+    font-size: 22px;
 
-letter-spacing:5px;
+    letter-spacing: 5px;
 
-text-shadow:
+    text-shadow:
 
-0 0 10px black,
+        0 0 10px black,
 
-0 0 20px black;
+        0 0 20px black;
 
-animation:blink 1.5s infinite;
+    animation: blink 1.5s infinite;
 
 }
-
 
 
 @keyframes blink {
 
-50% {
+    50% {
 
-opacity:.3;
+        opacity: .3;
+
+    }
 
 }
 
-}
 
 
 
 
-
-
-
-/* APP */
+/* APPLICATION */
 
 
 #app {
 
-height:100vh;
+    height: 100vh;
 
-display:flex;
+    display: flex;
 
-opacity:0;
+    opacity: 0;
 
-transition:opacity 1s;
+    transition: opacity 1s;
 
 }
 
+
+
+
+
+/* SIDEBAR */
 
 
 #sidebar {
 
-width:230px;
+    width: 230px;
 
-background:#080808;
+    background: #080808;
 
-border-right:1px solid #222;
+    border-right: 1px solid #222;
 
-transition:.4s;
+    transition: .4s;
 
 }
-
 
 
 #sidebar.collapsed {
 
-width:60px;
+    width: 60px;
 
 }
-
 
 
 #menu {
 
-width:100%;
+    width: 100%;
 
-height:50px;
+    height: 50px;
 
-background:none;
+    background: none;
 
-border:none;
+    border: none;
 
-color:white;
+    color: white;
 
-font-size:25px;
+    font-size: 25px;
 
-cursor:pointer;
+    cursor: pointer;
 
 }
-
 
 
 nav button {
 
-width:100%;
+    width: 100%;
 
-padding:15px;
+    padding: 15px;
 
-background:none;
+    background: none;
 
-border:none;
+    border: none;
 
-color:#aaa;
+    color: #aaa;
 
-text-align:left;
+    text-align: left;
 
-cursor:pointer;
+    cursor: pointer;
+
+    font-family: inherit;
 
 }
-
 
 
 nav button:hover {
 
-background:#111;
+    background: #111;
 
-color:#00ffff;
+    color: #00ffff;
 
 }
 
 
+
+
+
+/* MAIN */
 
 
 main {
 
-flex:1;
+    flex: 1;
 
-display:flex;
+    display: flex;
 
-flex-direction:column;
+    flex-direction: column;
 
 }
 
 
+
+
+
+/* HEADER */
 
 
 header {
 
-height:55px;
+    height: 55px;
 
-border-bottom:1px solid #222;
+    border-bottom: 1px solid #222;
 
-display:flex;
+    display: flex;
 
-align-items:center;
+    align-items: center;
 
-justify-content:space-between;
+    justify-content: space-between;
 
-padding:10px 20px;
+    padding: 10px 20px;
 
 }
-
 
 
 header input {
 
-width:350px;
+    width: 350px;
 
-background:#111;
+    background: #111;
 
-border:1px solid #333;
+    border: 1px solid #333;
 
-color:white;
+    color: white;
 
-padding:10px;
+    padding: 10px;
+
+    font-family: inherit;
 
 }
 
+
+header input:focus {
+
+    outline: none;
+
+    border-color: #00ffff;
+
+}
 
 
 #status {
 
-color:#00ff88;
+    color: #00ff88;
 
 }
 
 
+
+
+
+/* WORKSPACE */
 
 
 #workspace {
 
-flex:1;
+    flex: 1;
 
-display:flex;
+    display: flex;
 
-gap:15px;
+    gap: 15px;
 
-padding:15px;
+    padding: 15px;
+
+    min-height: 0;
 
 }
 
 
+
+
+
+/* PANELS */
 
 
 .panel {
 
-background:#090909;
+    background: #090909;
 
-border:1px solid #222;
+    border: 1px solid #222;
 
-padding:15px;
+    padding: 15px;
+
+    min-height: 0;
 
 }
-
 
 
 h3 {
 
-color:#00ffff;
+    color: #00ffff;
+
+    margin-top: 0;
+
+    letter-spacing: 2px;
 
 }
 
+
+
+
+
+/* MAP */
 
 
 .mapPanel {
 
-flex:2;
+    flex: 2;
 
-position:relative;
+    position: relative;
 
-}
-
-
-
-.tools {
-
-flex:1;
+    min-width: 0;
 
 }
-
-
 
 
 #map {
 
-height:90%;
+    height: calc(100% - 35px);
 
-width:100%;
-
-}
-
-
-
-
-.placeholder {
-
-height:90%;
-
-display:flex;
-
-align-items:center;
-
-justify-content:center;
-
-color:#555;
+    width: 100%;
 
 }
-
-
 
 
 #coordinates {
 
-position:absolute;
+    position: absolute;
 
-bottom:30px;
+    bottom: 30px;
 
-left:30px;
+    left: 30px;
 
-background:#050505;
+    background: #050505;
 
-border:1px solid #333;
+    border: 1px solid #333;
 
-padding:12px;
+    padding: 12px;
 
-color:#00ffff;
+    color: #00ffff;
 
-z-index:5;
+    z-index: 5;
+
+    line-height: 1.6;
 
 }
-
-
 
 
 .maplibregl-ctrl-group {
 
-background:#111;
+    background: #111;
 
 }
-
 
 
 .maplibregl-ctrl button {
 
-filter:invert(1);
+    filter: invert(1);
 
 }
 
 
 
 
+
+/* TOOLS */
+
+
+.tools {
+
+    flex: 1;
+
+    min-width: 300px;
+
+    overflow-y: auto;
+
+}
+
+
+.placeholder {
+
+    height: 90%;
+
+    display: flex;
+
+    align-items: center;
+
+    justify-content: center;
+
+    color: #555;
+
+}
+
+
+
+
+
+/* IP LOOKUP */
+
+
+.toolBox {
+
+    display: flex;
+
+    flex-direction: column;
+
+    gap: 15px;
+
+}
+
+
+.toolLabel {
+
+    color: #777;
+
+    font-size: 12px;
+
+    letter-spacing: 1px;
+
+}
+
+
+.toolInput {
+
+    width: 100%;
+
+    background: #050505;
+
+    border: 1px solid #333;
+
+    color: #00ffff;
+
+    padding: 12px;
+
+    font-family: inherit;
+
+}
+
+
+.toolInput:focus {
+
+    outline: none;
+
+    border-color: #00ffff;
+
+}
+
+
+.toolButton {
+
+    background: #111;
+
+    border: 1px solid #444;
+
+    color: #00ffff;
+
+    padding: 12px;
+
+    font-family: inherit;
+
+    cursor: pointer;
+
+    letter-spacing: 1px;
+
+}
+
+
+.toolButton:hover {
+
+    background: #00ffff;
+
+    color: #000;
+
+}
+
+
+.toolButton:disabled {
+
+    opacity: .5;
+
+    cursor: wait;
+
+}
+
+
+.results {
+
+    border-top: 1px solid #222;
+
+    padding-top: 15px;
+
+}
+
+
+.resultRow {
+
+    display: flex;
+
+    justify-content: space-between;
+
+    gap: 15px;
+
+    padding: 8px 0;
+
+    border-bottom: 1px solid #151515;
+
+    font-size: 12px;
+
+}
+
+
+.resultLabel {
+
+    color: #777;
+
+}
+
+
+.resultValue {
+
+    color: #e6e6e6;
+
+    text-align: right;
+
+    word-break: break-word;
+
+}
+
+
+.toolMessage {
+
+    color: #777;
+
+    font-size: 12px;
+
+    line-height: 1.6;
+
+}
+
+
+
+
+
+/* FOOTER */
+
+
 footer {
 
-height:35px;
+    height: 35px;
 
-border-top:1px solid #222;
+    border-top: 1px solid #222;
 
-padding:10px;
+    padding: 10px;
 
-color:#777;
+    color: #777;
+
+    font-size: 12px;
 
 }
